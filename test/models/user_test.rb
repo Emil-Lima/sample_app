@@ -19,4 +19,45 @@ class UserTest < ActiveSupport::TestCase
     @user.email = '        '
     refute @user.valid?
   end
+
+  test 'name should be not too long' do
+    @user.name = 'a' * 51
+    refute @user.valid?
+  end
+
+  test 'email should be not too long' do
+    @user.email = 'a' * 250 + 'example.com'
+    refute @user.valid?
+  end
+
+  test 'email validation should accept valid addresses' do
+    valid_addresses = %w[example@example.com other@this.org FOO@bar.com
+                        A_bc-D@foo.bar.com u1+u2@foo.uk first.second@org.com]
+    valid_addresses.each do |valid_address|
+      @user.email = valid_address
+      assert @user.valid?, "#{valid_address.inspect} should be valid"
+    end
+  end
+
+  test 'email validation shoudl reject invalid addresses' do
+    invalid_addresses = %w[example@example,com user_without_at.com user.user@org.
+                        foo@bar_bar.com foo@bar+bar.com user@user..com]
+    invalid_addresses.each do |invalid_address|
+      @user.email = invalid_address
+      refute @user.valid?, "#{invalid_address.inspect} should be invalid"
+    end
+  end
+
+  test 'email addresses should be unique' do
+    duplicated_user = @user.dup
+    @user.save
+    refute duplicated_user.valid?
+  end
+
+  test 'email should be all lower case' do
+    example_email = 'ExamPlE@eXAMple.coM'
+    @user.email = example_email
+    @user.save
+    assert_equal example_email.downcase, @user.reload.email
+  end
 end
