@@ -61,4 +61,11 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_equal example_email.downcase, @user.reload.email
   end
+
+  test 'password shoud be, at least, 8 char long' do
+    @user.password = @user.password_confirmation = 'a' * 7
+    refute @user.valid?
+    @user.password = @user.password_confirmation = 'rytui3rb2A'
+    assert @user.valid?
+  end
 end
