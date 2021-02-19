@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '2.7.0'
 
 gem 'active_storage_validations', '0.8.9'
 gem 'bcrypt',                     '3.1.13'
@@ -25,7 +25,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen',                '3.4.1'
+  gem 'listen',                '3.2.1'
   gem 'spring',                '2.1.1'
   gem 'spring-watcher-listen', '2.0.1'
   gem 'web-console',           '4.1.0'
