@@ -11,6 +11,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should redirect index when not logged in" do
+    get users_path
+    assert_redirected_to login_url
+  end
+
   test "should redirect edit when not logged in" do
     get edit_user_path(@user)
     refute flash.empty?
@@ -28,5 +33,22 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
     assert flash.empty?
     assert_redirected_to root_url
+  end
+
+  test "layout links" do
+    get root_path
+    assert_template 'static_pages/home'
+    assert_select "a[href=?]", root_path, count: 2
+    assert_select "a[href=?]", help_path
+    assert_select "a[href=?]", about_path
+    assert_select "a[href=?]", contact_path
+    assert_select "a[href=?]", login_path
+    user = users(:example)
+    log_in_as(user)
+    get root_path
+    assert_select "a[href=?]", logout_path
+    assert_select "a[href=?]", users_path
+    assert_select "a[href=?]", user_path(user)
+    assert_select "a[href=?]", edit_user_path(user)
   end
 end
