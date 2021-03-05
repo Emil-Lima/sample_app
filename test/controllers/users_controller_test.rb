@@ -51,4 +51,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(user)
     assert_select "a[href=?]", edit_user_path(user)
   end
+
+  test "should not allow the admin attribute to be edited via the web" do
+    log_in_as(@other_user)
+    refute @other_user.admin?
+    patch user_path(@other_user), params: {
+                                    user: { password:              "password",
+                                            password_confirmation: "password",
+                                            admin: true } }
+    refute @other_user.reload.admin?
+  end
 end
