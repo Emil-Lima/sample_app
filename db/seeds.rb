@@ -1,3 +1,9 @@
+User.create!(name: 'John Doe',
+             email: 'originalfirstuser@user.com',
+             password: 'password',
+             password_confirmation: 'password',
+             admin: true)
+
 # Generate 99 additional users
 99.times do |number|
   name = Faker::Name.name
