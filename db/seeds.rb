@@ -11,5 +11,6 @@ User.create!(name: 'John Doe',
   name = Faker::Name.name
   email = "example#{number+1}@exampleforapp.com"
   password = 'password'
-  User.create!(name: name, email: email, password: password, password_confirmation: password)
+  User.create!(name: name, email: email, password: password, password_confirmation: password,
+               activated: true, activated_at: Time.zone.now)
 end
