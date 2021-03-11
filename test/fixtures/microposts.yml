@@ -3,16 +3,16 @@
 apple:
   created_at: <%= 10.minutes.ago %>
   content: "I just ate an apple!"
-  user: example
+  user: second
 
 music:
   content: "Music time"
   created_at: <%= 2.months.ago %>
-  user: example
+  user: second
   
 most_recent:
   created_at: <%= Time.zone.now %>
   content: "Hi"
-  user: example
+  user: second
 
 
