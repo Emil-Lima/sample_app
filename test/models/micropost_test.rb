@@ -2,8 +2,8 @@ require "test_helper"
 
 class MicropostTest < ActiveSupport::TestCase
   def setup
-    @user = users(:example)
-    @micropost = @user.microposts.build(content: "Lore ipsum")
+    @user = users(:second)
+    @micropost = @user.microposts.build(content: "Lorem ipsum")
   end
 
   test "should be valid" do
