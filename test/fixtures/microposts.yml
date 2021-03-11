@@ -15,4 +15,11 @@ most_recent:
   content: "Hi"
   user: second
 
+<% 30.times do |n| %>
+micropost_<%= n %>:
+  content: <%= Faker::Lorem.sentence(5) %>
+  created_at: <%= 42.days.ago %>
+  user: second
+<% end %>
+
 
