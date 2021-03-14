@@ -88,6 +88,7 @@ class UserTest < ActiveSupport::TestCase
     refute first_user.following?(second_user)
     first_user.follow(second_user)
     assert first_user.following?(second_user)
+    assert second_user.followers.include?(first_user)
     first_user.unfollow(second_user)
     refute first_user.following?(second_user)
     # Users can't follow themselves
