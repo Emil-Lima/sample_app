@@ -1,0 +1,15 @@
+one:
+  follower: example
+  followed: second
+
+two:
+  follower: example
+  followed: malory
+
+three:
+  follower: archer
+  followed: example
+
+four:
+  follower: michael
+  followed: example
