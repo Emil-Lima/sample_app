@@ -41,12 +41,33 @@ malory:
   activated: true
   activated_at: <% Time.zone.now %>
 
+malory:
+  name: Malory Archer
+  email: boss@example.gov
+  password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <% Time.zone.now %>
+
 inactive:
   name: Inactive User
   email: inactive@user.com
   password_digest: <%= User.digest('password') %>
   admin: false
   activated: false
+
+following:
+  name: Following
+  email: following@example.gov
+  password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <% Time.zone.now %>
+
+follower:
+  name: Follower
+  email: follower@example.gov
+  password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <% Time.zone.now %>
   
 <% 30.times do |n| %>
 user_<%= n %>:
